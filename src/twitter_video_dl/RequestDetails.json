@@ -6,7 +6,9 @@
         "vibe_tweet_context_enabled": true,
         "standardized_nudges_misinfo": true,
         "responsive_web_edit_tweet_api_enabled": true,
-        "responsive_web_enhance_cards_enabled": true
+        "responsive_web_enhance_cards_enabled": true,
+        "vibe_api_enabled": true,
+        "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": true
     },
     "variables": {
         "withBirdwatchNotes": false,
