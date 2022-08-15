@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import src.twitter_video_dl.twitter_video_dl as tvdl
 import argparse
 import string
@@ -7,7 +9,7 @@ def random_file_name_genrator() -> str:
     list = string.ascii_letters + string.digits
     length = 10
     
-    return ''.join(random.choice(list) for i in range(length)) + ".mp4"
+    return ''.join(random.choice(list) for _ in range(length)) + ".mp4"
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
