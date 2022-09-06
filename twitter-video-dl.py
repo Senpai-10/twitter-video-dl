@@ -4,11 +4,12 @@ import src.twitter_video_dl.twitter_video_dl as tvdl
 import argparse
 import string
 import random
+import rich
 
-def random_file_name_genrator() -> str: 
+def generate_file_name() -> str:
     list = string.ascii_letters + string.digits
     length = 10
-    
+
     return ''.join(random.choice(list) for _ in range(length)) + ".mp4"
 
 if __name__ == "__main__":
@@ -19,6 +20,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "urls",
         nargs="+",
+        type=str,
         help="Twitter URL to download.  e.g. https://twitter.com/GOTGTheGame/status/1451361961782906889"
     )
 
@@ -33,10 +35,17 @@ if __name__ == "__main__":
 
     # file_name = args.file_name if args.file_name.endswith(".mp4") else args.file_name + ".mp4"
 
-    for url in args.urls:
-        file_name = random_file_name_genrator()
-        
-        print(f"Downloading '{url}'")
-        tvdl.download_video(url, file_name)
-        print("Done!")
+    download_list_size = len(args.urls)
     
+    i = 1
+    for url in args.urls:
+        file_name = generate_file_name()
+        pct = int(i / download_list_size * 100)
+        
+        rich.print(f"[bold green]Downloading[reset] video [bright_black]([yellow]{i} out of {download_list_size}[white],[yellow] {pct}%[bright_black])[reset]")
+        rich.print(f"[bright_black]Url: {url}")
+        rich.print(f"[bright_black]Filename: {file_name}")
+        
+        tvdl.download_video(url, file_name)
+        
+        i += 1
